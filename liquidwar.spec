@@ -1,8 +1,7 @@
 %define name 	liquidwar
-%define version	5.6.3
+%define version	5.6.4
 %define rel	1
-%define release %mkrel_fixed %rel
-%define mkrel_fixed(c:) %{-c: 0.%{-c*}.}%{!?_with_unstable:%(perl -e '$_="%{1}";m/(\\d+)$/;$rel=${1}-1;re;print "$rel";').%{?subrel:%subrel}%{!?subrel:1}.%{?distversion:%distversion}%{?!distversion:%(echo $[%{mdkversion}/10])}}%{?_with_unstable:%{1}}%{?distsuffix:%distsuffix}%{?!distsuffix:mdk}
+%define release %mkrel %rel
 
 %define build_allegro_unstable 0
 %{?_with_allegro_unstable: %{expand: %%global build_allegro_unstable 1}}
@@ -13,11 +12,12 @@ Release: 	%{release}
 Summary:	Liquid War is a unique multiplayer wargame
 License:	GPL
 Group:		Games/Other
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	http://download.savannah.gnu.org/releases/%{name}/%{name}-%{version}.tar.gz
+Patch0:		liquidwar-5.6.4-desktop-file-fix.patch
 Source11:	%{name}-16.png
 Source12:	%{name}-32.png
 Source13:	%{name}-48.png
-URL: 		http://www.ufoot.org/liquidwar/
+URL: 		http://www.ufoot.org/liquidwar/v5
 BuildRequires:	python-devel
 # (misc) data file need to compile
 %if %build_allegro_unstable
@@ -45,28 +45,17 @@ other, it is as simple as that.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 autoconf
-%configure --disable-doc-pdf --disable-doc-ps 
+%configure2_5x --disable-doc-pdf --disable-doc-ps 
 %make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 perl -pi -e 's#install_custom_texture install_icon install_gpl#install_custom_texture #' Makefile
 %makeinstall
-
-# menu entry
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat >$RPM_BUILD_ROOT%{_menudir}/%{name} <<EOF
-?package(%{name}): \
-	command="%{_gamesbindir}/%{name} "\
-	needs="x11" \
-	icon="%{name}.png" \
-	section="Amusement/Strategy" \
-	title="Liquidwar" \
-	longtitle="A unique multiplayer wargame"
-EOF
 
 # icons
 install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
@@ -98,7 +87,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_gamesdatadir}/%{name}
 %{_mandir}/man6/*
 %{_infodir}/*
-%{_menudir}/%{name}
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
