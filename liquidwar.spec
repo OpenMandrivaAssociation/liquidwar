@@ -28,6 +28,7 @@ BuildRequires:  allegro, allegro-devel
 
 # for buildinfo files
 BuildRequires:	texinfo 
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Liquid War is a wargame. But it is different from common wargames.
