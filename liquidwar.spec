@@ -9,7 +9,7 @@
 Name: 		%{name}
 Version: 	%{version}
 Release: 	%{release}
-Summary:	Liquid War is a unique multiplayer wargame
+Summary:	Unique multiplayer wargame
 License:	GPL
 Group:		Games/Other
 Source0:	http://download.savannah.gnu.org/releases/%{name}/%{name}-%{version}.tar.gz
