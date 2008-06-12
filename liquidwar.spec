@@ -72,13 +72,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %_install_info %{name}.info
+%if %mdkversion < 200900
 %{update_menus}
+%endif
 
 %preun
 %_remove_install_info %{name}.info
 
+%if %mdkversion < 200900
 %postun
 %{clean_menus}
+%endif
 
 %files
 %defattr(-,root,root)
