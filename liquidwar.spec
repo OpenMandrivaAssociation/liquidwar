@@ -52,7 +52,11 @@ other, it is as simple as that.
 %patch2 -p0 
 %build
 autoconf
-%configure2_5x --disable-doc-pdf --disable-doc-ps --disable-asm 
+%configure2_5x --disable-doc-pdf --disable-doc-ps \
+%ifnarch %ix86
+  --disable-asm \
+%endif
+
 %make
 
 %install
