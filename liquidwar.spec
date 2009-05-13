@@ -15,6 +15,7 @@ Group:		Games/Other
 Source0:	http://download.savannah.gnu.org/releases/%{name}/%{name}-%{version}.tar.gz
 Patch0:		liquidwar-5.6.4-desktop-file-fix.patch
 Patch1:		liquidwar-5.6.4-fix-str-fmt.patch
+Patch2:		liquidwar-5.6.4-fix-linking-issue.patch
 Source11:	%{name}-16.png
 Source12:	%{name}-32.png
 Source13:	%{name}-48.png
@@ -48,7 +49,7 @@ other, it is as simple as that.
 %setup -q
 %patch0 -p0
 %patch1 -p1
-
+%patch2 -p0 
 %build
 autoconf
 %configure2_5x --disable-doc-pdf --disable-doc-ps --disable-asm 
