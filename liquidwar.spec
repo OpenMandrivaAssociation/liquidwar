@@ -49,7 +49,7 @@ other, it is as simple as that.
 
 %build
 autoconf
-%configure2_5x --disable-doc-pdf --disable-doc-ps 
+%configure2_5x --disable-doc-pdf --disable-doc-ps --disable-asm 
 %make
 
 %install
