@@ -1,6 +1,6 @@
 %define name 	liquidwar
 %define version	5.6.4
-%define rel	2
+%define rel	3
 %define release %mkrel %rel
 
 %define build_allegro_unstable 0
