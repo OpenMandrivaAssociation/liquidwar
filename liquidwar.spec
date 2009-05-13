@@ -10,8 +10,8 @@ Name: 		%{name}
 Version: 	%{version}
 Release: 	%{release}
 Summary:	Unique multiplayer wargame
-License:	GPL
-Group:		Games/Other
+License:	GPLv2+
+Group:		Games/Arcade
 Source0:	http://download.savannah.gnu.org/releases/%{name}/%{name}-%{version}.tar.gz
 Patch0:		liquidwar-5.6.4-desktop-file-fix.patch
 Patch1:		liquidwar-5.6.4-fix-str-fmt.patch
@@ -47,7 +47,7 @@ other, it is as simple as that.
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p1
 %patch1 -p1
 %patch2 -p0 
 %build
