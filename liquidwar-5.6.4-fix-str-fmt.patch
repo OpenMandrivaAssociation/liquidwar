@@ -1,0 +1,11 @@
+--- liquidwar-5.6.4/src/logsrv.c
++++ liquidwar-5.6.4/src/logsrv.c	2009-05-13 14:15:47.000000000 +0200
+@@ -100,7 +100,7 @@
+ 			 time_struct->tm_hour,
+ 			 time_struct->tm_min, time_struct->tm_sec);
+ 
+-      fprintf (LW_LOG_FILE, time_str);
++      fprintf (LW_LOG_FILE, "%s", (char *) time_str);
+     }
+   LW_LOG_NEW_LINE = 0;
+ }
