@@ -103,3 +103,121 @@ rm -rf $RPM_BUILD_ROOT
 %{_liconsdir}/%{name}.png
 %{_datadir}/applications/*
 
+
+
+%changelog
+* Mon Dec 06 2010 Oden Eriksson <oeriksson@mandriva.com> 5.6.4-5mdv2011.0
++ Revision: 612760
+- the mass rebuild of 2010.1 packages
+
+* Thu Dec 31 2009 Emmanuel Andry <eandry@mandriva.org> 5.6.4-4mdv2010.1
++ Revision: 484587
+- rebuild for new allegro
+
+* Wed May 13 2009 Samuel Verschelde <stormi@mandriva.org> 5.6.4-3mdv2010.0
++ Revision: 375480
+- do not disable asm for x86
+- fix Group (fix #49392)
+- fix desktop file
+- try to fix str fmt
+
+  + Michael Scherer <misc@mandriva.org>
+    - fix linking issue
+    - disable asm to compile on x86_64
+
+  + Pixel <pixel@mandriva.com>
+    - rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - fix "foobar is blabla" summary (=> "blabla") so that it looks nice in rpmdrake
+    - kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Sat Nov 17 2007 Funda Wang <fwang@mandriva.org> 5.6.4-2mdv2008.1
++ Revision: 109219
+- rebuild for new lzma
+
+* Sun Oct 28 2007 Funda Wang <fwang@mandriva.org> 5.6.4-1mdv2008.1
++ Revision: 102741
+- New version 5.6.4
+- import liquidwar
+
+
+* Thu Dec 01 2005 Lenny Cartier <lenny@mandriva.com> 5.6.3-1mdk
+- 5.6.3
+
+* Thu Sep 22 2005 Guillaume Bedot <littletux@zarb.org> 5.6.2-4mdk
+- rebuild with allegro-4.2.0
+
+* Mon Jul 25 2005 Olivier Blin <oblin@mandriva.com> 5.6.2-3mdk
+- rebuild with allegro-testing-4.2.0
+
+* Fri Apr 15 2005 Guillaume Bedot <littletux@zarb.org> 5.6.2-2mdk
+- make it easy to build with allegro or allegro-testing.
+- rebuilt with allegro-testing.
+- use mkrel.
+
+* Sun Feb 15 2004 Lenny Cartier <lenny@mandrakesoft.com> 5.6.2-1mdk
+- 5.6.2
+
+* Mon Jan 12 2004 Lenny Cartier <lenny@mandrakesoft.com> 5.6.1-1mdk
+- 5.6.1
+
+* Mon Jan 05 2004 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 5.6.0-2mdk
+- don't rm -rf $RPM_BUILD_ROOT in %%prep
+- don't bzip2 icons in src.rpm
+- cosmetics
+
+* Sat Dec 20 2003 Lenny Cartier <lenny@mandrakesoft.com> 5.6.0-1mdk
+- 5.6.0
+- remove patch merged upstream
+
+* Tue Nov 25 2003 Michael Scherer <misc@mandrake.org> 5.5.9-5mdk
+- BuildRequires texinfo
+ 
+* Sat Aug 30 2003 Michael Scherer <scherer.michael@free.fr> 5.5.9-4mdk 
+- remove pdf and ps doc.
+
+* Sun Jul 27 2003 Michael Scherer <scherer.michael@free.fr> 5.5.9-3mdk
+- fix compile on gcc3 ( patch #0 )
+
+* Fri Apr 25 2003 Guillaume Cottenceau <gc@mandrakesoft.com> 5.5.9-2mdk
+- fix buildrequires thx to stefan's robot
+
+* Sat Mar  8 2003 Guillaume Cottenceau <gc@mandrakesoft.com> 5.5.9-1mdk
+- new version
+
+* Fri Jul 26 2002 Damien Chaumette <dchaumette@mandrakesoft.com> 5.5.6-1mdk
+- version 5.5.6
+
+* Fri Jul 11 2002 Lenny Cartier <lenny@mandrakesoft.com> 5.5.3-1mdk
+- 5.5.3
+
+* Thu Jul 04 2002 Lenny Cartier <lenny@mandrakesoft.com> 5.5.2-1mdk
+- 5.5.2
+
+* Thu Jun 20 2002 Lenny Cartier <lenny@mandrakesoft.com> 5.5.1-1mdk
+- 5.5.1
+
+* Tue Apr 09 2002 Guillaume Rousse <g.rousse@linux-mandrake.com> 5.4.5-1mdk
+- 5.4.5
+- png icons
+- spec cleanup
+
+* Tue Oct 16 2001 Yves Duret <yduret@mandrakesoft.com> 5.4.2-3mdk
+- rebuild
+- rpmlint happier
+
+* Thu Oct  4 2001 Guillaume Cottenceau <gc@mandrakesoft.com> 5.4.2-2mdk
+- rebuild with current liballeg
+
+* Mon Aug 20 2001 Yves Duret <yduret@mandrakesoft.com> 5.4.2-1mdk
+- version 5.4.2
+
+* Wed Jul 11 2001 Yves Duret <yduret@mandrakesoft.com> 5.4.0-2mdk
+- i suck
+
+* Tue Jul 10 2001 Yves Duret <yduret@mandrakesoft.com> 5.4.0-1mdk
+- first mandrake version (games found by our pambon)
