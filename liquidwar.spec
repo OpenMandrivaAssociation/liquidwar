@@ -3,7 +3,7 @@
  
 Name: 		liquidwar
 Version: 	5.6.4
-Release: 	6
+Release: 	7
 Summary:	Unique multiplayer wargame
 License:	GPLv2+
 Group:		Games/Arcade
@@ -64,16 +64,10 @@ install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
 install -m644 %{SOURCE12} -D $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png 
 install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/liquidwar $RPM_BUILD_ROOT%{_datadir}/pixmaps
+rm -rf %{buildroot}%{_datadir}/doc/liquidwar %{buildroot}%{_datadir}/pixmaps
 
 # remove unused links
-rm -rf $RPM_BUILD_ROOT%{_bindir}
-
-%post
-%_install_info %{name}.info
-
-%preun
-%_remove_install_info %{name}.info
+rm -rf %{buildroot}%{_bindir}
 
 %files
 %defattr(-,root,root)
