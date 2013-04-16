@@ -25,7 +25,8 @@ BuildRequires:  allegro, allegro-devel
 
 # for buildinfo files
 BuildRequires:	texinfo 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+
+%define debug_package %{nil}
 
 %description
 Liquid War is a wargame. But it is different from common wargames.
@@ -55,7 +56,6 @@ autoconf
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
 perl -pi -e 's#install_custom_texture install_icon install_gpl#install_custom_texture #' Makefile
 %makeinstall
 
@@ -69,19 +69,11 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/liquidwar $RPM_BUILD_ROOT%{_datadir}/pixma
 # remove unused links
 rm -rf $RPM_BUILD_ROOT%{_bindir}
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %post
 %_install_info %{name}.info
 
 %preun
 %_remove_install_info %{name}.info
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%endif
 
 %files
 %defattr(-,root,root)
@@ -157,7 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Jan 12 2004 Lenny Cartier <lenny@mandrakesoft.com> 5.6.1-1mdk
 - 5.6.1
 
-* Mon Jan 05 2004 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 5.6.0-2mdk
+* Mon Jan 05 2004 Per Ã˜yvind Karlsen <peroyvind@linux-mandrake.com> 5.6.0-2mdk
 - don't rm -rf $RPM_BUILD_ROOT in %%prep
 - don't bzip2 icons in src.rpm
 - cosmetics
