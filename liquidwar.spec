@@ -1,14 +1,9 @@
-%define name 	liquidwar
-%define version	5.6.4
-%define rel	5
-%define release %mkrel %rel
-
 %define build_allegro_unstable 0
 %{?_with_allegro_unstable: %{expand: %%global build_allegro_unstable 1}}
  
-Name: 		%{name}
-Version: 	%{version}
-Release: 	%{release}
+Name: 		liquidwar
+Version: 	5.6.4
+Release: 	6
 Summary:	Unique multiplayer wargame
 License:	GPLv2+
 Group:		Games/Arcade
