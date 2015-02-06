@@ -3,7 +3,7 @@
  
 Name: 		liquidwar
 Version: 	5.6.4
-Release: 	7
+Release: 	8
 Summary:	Unique multiplayer wargame
 License:	GPLv2+
 Group:		Games/Arcade
