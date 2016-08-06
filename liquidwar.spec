@@ -11,11 +11,12 @@ Source0:	http://download.savannah.gnu.org/releases/%{name}/%{name}-%{version}.ta
 Patch0:		liquidwar-5.6.4-desktop-file-fix.patch
 Patch1:		liquidwar-5.6.4-fix-str-fmt.patch
 Patch2:		liquidwar-5.6.4-fix-linking-issue.patch
+Patch3:		liquidwar-5.6.4-ovflfix.patch
 Source11:	%{name}-16.png
 Source12:	%{name}-32.png
 Source13:	%{name}-48.png
 URL: 		http://www.ufoot.org/liquidwar/v5
-BuildRequires:	python-devel
+BuildRequires:	python2-devel
 # (misc) data file need to compile
 %if %build_allegro_unstable
 BuildRequires:	allegro-testing, allegro-testing-devel
@@ -46,8 +47,13 @@ other, it is as simple as that.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0 
+%patch3 -p0
+
 %build
+export CC=gcc
+export CXX=g++
 autoconf
+export PYTHON=%__python2 
 %configure2_5x --disable-doc-pdf --disable-doc-ps \
 %ifnarch %ix86
   --disable-asm \
@@ -74,8 +80,6 @@ rm -rf %{buildroot}%{_bindir}
 %doc COPYING README doc/html/*.html
 %{_gamesbindir}/*
 %{_gamesdatadir}/%{name}
-%{_mandir}/man6/*
-%{_infodir}/*
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
