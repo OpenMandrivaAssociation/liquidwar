@@ -2,8 +2,8 @@
 %{?_with_allegro_unstable: %{expand: %%global build_allegro_unstable 1}}
  
 Name: 		liquidwar
-Version: 	5.6.4
-Release: 	8
+Version: 	5.6.5
+Release: 	1
 Summary:	Unique multiplayer wargame
 License:	GPLv2+
 Group:		Games/Arcade
