@@ -1,0 +1,232 @@
+--- doc/makedoc.py~	2018-12-23 13:04:36.000000000 -0600
++++ doc/makedoc.py	2019-08-01 09:55:36.138861280 -0500
+@@ -366,7 +366,7 @@
+         self.write("\n\\end{verbatim}\n")
+     def translate(self,data,tag):
+         result=data
+-	result=format_email_and_url(result)
++        result=format_email_and_url(result)
+         if (tag!="code"):
+             result=format_tex(result)
+         return result
+--- doc/makedoc.py~	2019-08-01 09:57:30.000000000 -0500
++++ doc/makedoc.py	2019-08-01 10:01:16.624513293 -0500
+@@ -405,7 +405,7 @@
+         self.write("\n")
+     def translate(self,data,tag):
+         result=data
+-	result=format_email_and_url(result)
++        result=format_email_and_url(result)
+         result=string.replace(result,"\\","\\\\")
+         result=string.replace(result,".","\.")
+         result=string.replace(result,"-","\-")
+--- doc/makedoc.py~	2019-08-01 10:05:15.000000000 -0500
++++ doc/makedoc.py	2019-08-01 10:16:35.106574773 -0500
+@@ -460,7 +460,7 @@
+         self.write("\n")
+     def translate(self,data,tag):
+         result=data
+-	result=format_email_and_url(result)
++        result=format_email_and_url(result)
+         if (tag=="code"):
+             result=" "*self.indent+\
+                     string.replace(result,"\n","\n"+" "*self.indent)
+--- doc/makedoc.py~	2019-08-01 10:16:46.000000000 -0500
++++ doc/makedoc.py	2019-08-01 10:21:42.795258329 -0500
+@@ -505,7 +505,7 @@
+         self.write("\n@end example\n")
+     def translate(self,data,tag):
+         result=data
+-	result=format_email_and_url(result)
++        result=format_email_and_url(result)
+ 
+         if (tag!="code"):
+             result=remove_duplicate_blanks(result)
+--- doc/makedoc.py~	2019-08-01 10:22:09.000000000 -0500
++++ doc/makedoc.py	2019-08-01 10:27:51.419879128 -0500
+@@ -548,7 +548,7 @@
+         self.write("\n")
+     def translate(self,data,tag):
+         result=data
+-	result=format_email_and_url(result)
++        result=format_email_and_url(result)
+ 
+         if (tag=="code"):
+             result=format_uwc_code(result)
+--- doc/makedoc.py~	2019-08-01 10:28:32.000000000 -0500
++++ doc/makedoc.py	2019-08-01 10:34:09.146489785 -0500
+@@ -208,7 +208,7 @@
+         if tag=="code":
+             self.start_code()
+     def endElement(self,tag):
+-        data=string.strip(self.charbuf)
++        data=self.charbuf.strip
+         if (data!=""):
+             self.write(self.translate(data,self.stack[-1]))
+         self.charbuf=""
+--- doc/makedoc.py~	2019-08-01 10:34:27.000000000 -0500
++++ doc/makedoc.py	2019-08-01 10:39:02.739184332 -0500
+@@ -61,7 +61,7 @@
+     return result
+ 
+ def format_email_and_url(text):
+-    result=text	
++    result=str(text)	
+ 
+     email=re.compile('"([\w\-\.]+@[\w\-\.]+)"')
+     result=email.sub(r'\1',result);
+--- doc/makedoc.py~	2019-08-01 10:54:49.000000000 -0500
++++ doc/makedoc.py	2019-08-01 11:05:05.757487736 -0500
+@@ -16,14 +16,14 @@
+ def remove_duplicate_blanks(text):
+     result=text
+ 
+-    result=string.replace(result,"\t"," ")
+-    result=string.replace(result,"\n"," ")
++    result=result.replace("\t"," ")
++    result=result.replace("\n"," ")
+ 
+     if (result!=""):
+         temp=""
+         while temp!=result:
+             temp=result
+-            result=string.replace(result,"  "," ")
++            result=result.replace("  "," ")
+ 
+     return result
+ 
+@@ -74,11 +74,11 @@
+ def format_html(text):
+     result=text
+ 
+-    result=string.replace(result,"<","ufoot_html_lt")
+-    result=string.replace(result,">","ufoot_html_gt")
+-    result=string.replace(result,"&","&amp;")
+-    result=string.replace(result,"ufoot_html_lt","&lt;")
+-    result=string.replace(result,"ufoot_html_gt","&gt;")    
++    result=result.replace("<","ufoot_html_lt")
++    result=result.replace(">","ufoot_html_gt")
++    result=result.replace("&","&amp;")
++    result=result.replace("ufoot_html_lt","&lt;")
++    result=result.replace("ufoot_html_gt","&gt;")    
+ 
+     # Uncomment this to make mailing list adresses look like "xxx at xxx"
+     # instead of "xxx@xxx". This can prevent spammers from harvesting
+@@ -97,31 +97,31 @@
+ def format_tex(text):
+     result=text
+ 
+-    result=string.replace(result,"\\","$\\backslash$")
+-    result=string.replace(result,"_","\\_")
+-    result=string.replace(result,"#","\\#")
+-    result=string.replace(result,"%","\\%")
+-    result=string.replace(result,"}","\\}")
+-    result=string.replace(result,"<","$<$")
+-    result=string.replace(result,">","$>$")
+-    result=string.replace(result,"~","$\\tilde{}$")
++    result=result.replace("\\","$\\backslash$")
++    result=result.replace("_","\\_")
++    result=result.replace("#","\\#")
++    result=result.replace("%","\\%")
++    result=result.replace("}","\\}")
++    result=result.replace("<","$<$")
++    result=result.replace(">","$>$")
++    result=result.replace("~","$\\tilde{}$")
+     
+     return result
+ 
+ def format_texi(text):
+     result=text
+ 
+-    result=string.replace(result,"@","@@")
+-    result=string.replace(result,"}","@}")
+-    result=string.replace(result,"{","@{")
++    result=result.replace("@","@@")
++    result=result.replace("}","@}")
++    result=result.replace("{","@{")
+ 
+     return result
+ 
+ def format_uwc(text):
+     result=text
+ 
+-    result=string.replace(result,"]","]")
+-    result=string.replace(result,"[","[[")
++    result=result.replace("]","]")
++    result=result.replace("[","[[")
+ 
+     return result
+ 
+@@ -139,8 +139,8 @@
+     result=text
+ 
+     result=format_uwc(result)
+-    result=string.replace(result,"\n"," ")
+-    result=string.replace(result,"\r"," ")
++    result=result.replace("\n"," ")
++    result=result.replace("\r"," ")
+     result=remove_duplicate_blanks(result)
+ 
+     return result
+--- doc/makedoc.py~	2019-08-01 11:05:37.000000000 -0500
++++ doc/makedoc.py	2019-08-01 11:10:12.624131362 -0500
+@@ -567,7 +567,7 @@
+     parser.setContentHandler(handler)
+     parser.parse(src_file)
+     dst_code=handler.translated
+-    dst_file.write(dst_code.encode("iso-8859-1"))
++    dst_file.write(str(dst_code.encode("iso-8859-1")))
+     src_file.close()
+     dst_file.close()
+         
+--- doc/makedoc.py~	2019-08-01 11:15:25.000000000 -0500
++++ doc/makedoc.py	2019-08-01 11:20:48.654373076 -0500
+@@ -463,7 +463,7 @@
+         result=format_email_and_url(result)
+         if (tag=="code"):
+             result=" "*self.indent+\
+-                    string.replace(result,"\n","\n"+" "*self.indent)
++                    result.replace("\n","\n"+" "*self.indent)
+         else:
+             result=format_text(result,self.indent,80)
+             if (tag=="elem"):
+--- doc/makedoc.py~	2019-08-01 11:21:07.000000000 -0500
++++ doc/makedoc.py	2019-08-01 11:25:15.772051577 -0500
+@@ -406,11 +406,11 @@
+     def translate(self,data,tag):
+         result=data
+         result=format_email_and_url(result)
+-        result=string.replace(result,"\\","\\\\")
+-        result=string.replace(result,".","\.")
+-        result=string.replace(result,"-","\-")
++        result=result.replace("\\","\\\\")
++        result=result.replace(".","\.")
++        result=result.replace("-","\-")
+         if (tag=="code"):
+-            result=string.replace(result,"\n","\n.br\n")
++            result=result.replace("\n","\n.br\n")
+         else:
+             result=remove_duplicate_blanks(result)
+         return result
+@@ -602,8 +602,8 @@
+     run_parser(handler,txt_file,xml_file)
+ 
+ def make_texi(texi_file,xml_file):
+-    node=string.replace(xml_file,".xml","")
+-    node=string.replace(node,"xml/","")
++    node=xml_file.replace(".xml","")
++    node=node.replace("xml/","")
+     parser=xml.sax.make_parser()
+     handler=XMLToTexi(node)
+     run_parser(handler,texi_file,xml_file)
+--- doc/makedoc.py~	2019-08-01 11:25:43.000000000 -0500
++++ doc/makedoc.py	2019-08-01 11:28:49.603782321 -0500
+@@ -72,7 +72,7 @@
+     return result
+ 
+ def format_html(text):
+-    result=text
++    result=str(text)
+ 
+     result=result.replace("<","ufoot_html_lt")
+     result=result.replace(">","ufoot_html_gt")
