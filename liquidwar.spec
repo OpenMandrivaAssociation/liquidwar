@@ -8,10 +8,10 @@ Summary:	Unique multiplayer wargame
 License:	GPLv2+
 Group:		Games/Arcade
 Source0:	http://download.savannah.gnu.org/releases/%{name}/%{name}-%{version}.tar.gz
-Patch0:		liquidwar-5.6.4-desktop-file-fix.patch
-Patch1:		liquidwar-5.6.4-fix-str-fmt.patch
-Patch2:		liquidwar-5.6.4-fix-linking-issue.patch
-Patch3:		liquidwar-5.6.4-ovflfix.patch
+#Patch0:		liquidwar-5.6.4-desktop-file-fix.patch
+#Patch1:		liquidwar-5.6.4-fix-str-fmt.patch
+#Patch2:		liquidwar-5.6.4-fix-linking-issue.patch
+#Patch3:		liquidwar-5.6.4-ovflfix.patch
 Source11:	%{name}-16.png
 Source12:	%{name}-32.png
 Source13:	%{name}-48.png
@@ -44,10 +44,10 @@ other, it is as simple as that.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0 
-%patch3 -p0
+#patch0 -p1
+#patch1 -p1
+#patch2 -p0 
+#patch3 -p0
 
 %build
 export CC=gcc
