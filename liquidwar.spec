@@ -2,21 +2,22 @@
 %{?_with_allegro_unstable: %{expand: %%global build_allegro_unstable 1}}
  
 Name: 		liquidwar
-Version: 	5.6.4
-Release: 	8
+Version: 	5.6.5
+Release: 	1
 Summary:	Unique multiplayer wargame
 License:	GPLv2+
 Group:		Games/Arcade
-Source0:	http://download.savannah.gnu.org/releases/%{name}/%{name}-%{version}.tar.gz
-Patch0:		liquidwar-5.6.4-desktop-file-fix.patch
-Patch1:		liquidwar-5.6.4-fix-str-fmt.patch
-Patch2:		liquidwar-5.6.4-fix-linking-issue.patch
-Patch3:		liquidwar-5.6.4-ovflfix.patch
+Source0:	http://www.ufoot.org/download/%{name}/v5/%{version}/%{name}-%{version}.tar.gz
+#Patch0:		liquidwar-5.6.4-desktop-file-fix.patch
+#Patch1:		liquidwar-5.6.4-fix-str-fmt.patch
+#Patch2:		liquidwar-5.6.4-fix-linking-issue.patch
+#Patch3:		liquidwar-5.6.4-ovflfix.patch
+Patch4:		liquidwar-5.6.5-python3.patch
+
 Source11:	%{name}-16.png
 Source12:	%{name}-32.png
 Source13:	%{name}-48.png
 URL: 		http://www.ufoot.org/liquidwar/v5
-BuildRequires:	python2-devel
 # (misc) data file need to compile
 %if %build_allegro_unstable
 BuildRequires:	allegro-testing, allegro-testing-devel
@@ -43,26 +44,23 @@ other, it is as simple as that.
 
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0 
-%patch3 -p0
+%autosetup -p0
 
 %build
 export CC=gcc
 export CXX=g++
 autoconf
-export PYTHON=%__python2 
-%configure2_5x --disable-doc-pdf --disable-doc-ps \
+%configure --disable-doc-pdf --disable-doc-ps \
+  --disable-doc-info \
 %ifnarch %ix86
   --disable-asm \
 %endif
+  CFLAGS="$RPM_OPT_FLAGS -fcommon"
 
-%make
+%make CFLAGS="$RPM_OPT_FLAGS -fcommon"
 
 %install
-perl -pi -e 's#install_custom_texture install_icon install_gpl#install_custom_texture #' Makefile
+sed -i 's#install_custom_texture install_icon install_gpl#install_custom_texture #' Makefile
 %makeinstall
 
 # icons
@@ -77,15 +75,16 @@ rm -rf %{buildroot}%{_bindir}
 
 %files
 %defattr(-,root,root)
-%doc COPYING README doc/html/*.html
+%doc COPYING README.md doc/html/*.html
 %{_gamesbindir}/*
 %{_gamesdatadir}/%{name}
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_datadir}/applications/*
-
-
+%{_mandir}/man6/%{name}.6.*
+%{_mandir}/man6/%{name}-mapgen.6.*
+%{_mandir}/man6/%{name}-server.6.*
 
 %changelog
 * Mon Dec 06 2010 Oden Eriksson <oeriksson@mandriva.com> 5.6.4-5mdv2011.0
