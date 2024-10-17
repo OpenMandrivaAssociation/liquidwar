@@ -17,7 +17,7 @@ Patch4:		liquidwar-5.6.5-python3.patch
 Source11:	%{name}-16.png
 Source12:	%{name}-32.png
 Source13:	%{name}-48.png
-URL: 		http://www.ufoot.org/liquidwar/v5
+URL: 		https://www.ufoot.org/liquidwar/v5
 # (misc) data file need to compile
 %if %build_allegro_unstable
 BuildRequires:	allegro-testing, allegro-testing-devel
